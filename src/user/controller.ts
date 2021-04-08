@@ -2,7 +2,7 @@ import { Request, Response, NextFunction, Router } from 'express';
 import { IContainer } from 'bottlejs';
 import User from './model';
 
-function UserController({ dbProvider, userRepository }: IContainer) {
+function UserController({ userRepository }: IContainer) {
   async function getAll(req: Request, res: Response, next: NextFunction) {
     if (req.query.active) {
       const users = await userRepository.findActive();

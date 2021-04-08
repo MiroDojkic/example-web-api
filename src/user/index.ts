@@ -1,7 +1,5 @@
 import { Router } from 'express'
 import { IContainer } from 'bottlejs';
-import Repository from './repository';
-import Controller from './controller';
 
 function UserRouter({ userController }: IContainer) {
   const router = Router();
@@ -12,8 +10,6 @@ function UserRouter({ userController }: IContainer) {
   return { route: '/users', router };
 }
 
-export default {
-  Router: UserRouter,
-  Controller,
-  Repository
-};
+export { UserRouter as Router };
+export { default as Repository } from './repository';
+export { default as Controller } from './controller';

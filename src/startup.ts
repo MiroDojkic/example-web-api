@@ -3,11 +3,13 @@ import { MikroORM } from '@mikro-orm/core';
 import { init } from './database';
 import serviceProvider, { registerModule } from './serviceProvider';
 import dbConfig from './database/config';
-import UserModule from './user';
+import * as OrganisationModule from './organisation';
+import * as UserModule from './user';
 
 async function configure() {
   const dbProvider = await init(dbConfig);
   serviceProvider.value('dbProvider', dbProvider);
+  registerModule('organisation', OrganisationModule);
   registerModule('user', UserModule);
   serviceProvider.factory('app', App);
   return serviceProvider.container;
