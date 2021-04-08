@@ -1,8 +1,12 @@
+import { Repository, EntityRepository } from '@mikro-orm/core';
 import { IContainer } from 'bottlejs';
 import User from './model';
 
-function UserRepository({ dbProvider }: IContainer) {
-  return dbProvider.em.getRepository(User);
+@Repository(User)
+class UserRepository extends EntityRepository<User> {
+  public findActive() {
+    return this.find({ active: true });
+  }
 }
 
-export default UserRepository;
+export default ({ dbProvider }: IContainer) => dbProvider.em.getRepository(User);

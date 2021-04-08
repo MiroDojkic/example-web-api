@@ -5,8 +5,7 @@ const modules: string[] = [];
 
 type Module = {
   Router: any,
-  Controller: any,
-  Repository: any
+  Controller: any
 }
 
 function registerModule(name: string, module: Module) {

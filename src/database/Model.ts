@@ -2,16 +2,13 @@ import { PrimaryKey, Property, SerializedPrimaryKey } from '@mikro-orm/core';
 
 export abstract class Model {
   @PrimaryKey()
-  _id!: number;
-
-  @SerializedPrimaryKey()
-  id!: string;
+  id!: number;
 
   @Property()
-  createdAt = new Date();
+  createdAt: Date = new Date();
 
   @Property({ onUpdate: () => new Date() })
-  updatedAt = new Date();
+  updatedAt: Date = new Date();
 }
 
 export default Model;
