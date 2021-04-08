@@ -15,7 +15,7 @@ function UserController({ dbProvider, userRepository }: IContainer) {
   async function create(req: Request, res: Response, next: NextFunction) {
     const { fullName } = req.body;
     const user = new User(fullName);
-    await userRepository.persistAndFlush(user);
+    await userRepository.save(user);
     return res.send(user)
   }
 

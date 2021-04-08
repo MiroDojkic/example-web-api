@@ -7,6 +7,10 @@ class UserRepository extends EntityRepository<User> {
   public findActive() {
     return this.find({ active: true });
   }
+
+  public save(user: User) {
+    return this.persistAndFlush(user);
+  }
 }
 
 export default ({ dbProvider }: IContainer) => dbProvider.em.getRepository(User);
