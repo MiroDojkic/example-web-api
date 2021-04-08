@@ -3,12 +3,12 @@ import { IContainer } from 'bottlejs';
 import Organisation from './model';
 
 function OrganisationController({ organisationRepository }: IContainer) {
+  async function get(req: Request, res: Response, next: NextFunction) {
+    return res.send(req.organisation);
+  }
+
   async function getAll(req: Request, res: Response, next: NextFunction) {
-    if (req.query.active) {
-      const organisations = await organisationRepository.findActive();
-      return res.send(organisations);
-    }
-    const organisations = await organisationRepository.find();
+    const organisations = await organisationRepository.find({});
     return res.send(organisations);
   }
 
@@ -19,7 +19,7 @@ function OrganisationController({ organisationRepository }: IContainer) {
     return res.send(organisation)
   }
 
-  return { getAll, create };
+  return { get, getAll, create };
 }
 
 export default OrganisationController;

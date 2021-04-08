@@ -1,11 +1,13 @@
 import Provider from 'bottlejs';
+import { IRouter, RouterFactory } from './types/Router';
+import { ControllerFactory } from './types/Controller';
 
 const provider = new Provider();
 const modules: string[] = [];
 
 type Module = {
-  Router: any,
-  Controller: any
+  Router: RouterFactory,
+  Controller: ControllerFactory
 }
 
 function registerModule(name: string, module: Module) {
@@ -15,7 +17,7 @@ function registerModule(name: string, module: Module) {
   })
 }
 
-type MapRouterCallback = (router: Module['Router']) => any;
+type MapRouterCallback = (router: IRouter) => any;
 function mapRouters(cb: MapRouterCallback) {
   return modules.map(module => {
     return cb(provider.container[`${module}Router`])

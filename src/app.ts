@@ -7,6 +7,7 @@ import { mapRouters } from './serviceProvider';
 function AppProvider({ dbProvider }: IContainer) {
   const app = App();
   app.use(bodyParser.json())
+  app.use(bodyParser.urlencoded({ extended: true }));
   app.use((req, res, next) => {
     RequestContext.create(dbProvider.em, next);
   })

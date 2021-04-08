@@ -1,8 +1,12 @@
-import { Entity, Property } from '@mikro-orm/core';
-import Model from '../database/Model';
+import { Entity, ManyToOne, Property } from '@mikro-orm/core';
+import Model from '../../database/Model';
+import Organisation from '../model';
 
 @Entity()
 export class User extends Model {
+  @ManyToOne(() => Organisation)
+  organisation!: Organisation;
+
   @Property()
   fullName!: string;
 

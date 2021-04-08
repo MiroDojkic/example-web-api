@@ -4,7 +4,7 @@ import { init } from './database';
 import serviceProvider, { registerModule } from './serviceProvider';
 import dbConfig from './database/config';
 import * as OrganisationModule from './organisation';
-import * as UserModule from './user';
+import * as UserModule from './organisation/user';
 
 async function configure() {
   const dbProvider = await init(dbConfig);
