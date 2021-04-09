@@ -10,6 +10,9 @@ export class User extends Model {
   @Property()
   fullName!: string;
 
+  @Property({ nullable: true })
+  address?: string;
+
   @Property({ nullable: true, default: true })
   active: boolean;
 
